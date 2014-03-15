@@ -1,0 +1,19 @@
+# File managed by Puppet
+#
+# IPFilter firewall rule declaration
+
+# default blocking policy
+block return-rst in log from any to any
+block return-rst out log from any to any
+<% if @skip_loopback == true -%>
+
+# skip loopback device from filtering
+pass out quick on <%= @loopback_interface %>
+pass in quick on <%= @loopback_interface %>
+<% end -%>
+
+# allow ICMP
+pass in quick proto icmp from any to any
+pass out quick proto icmp from any to any
+
+# generated rules
