@@ -46,10 +46,12 @@ class ipfilter (
     notify  => Service['ipfilter'],
   }
 
-  # enable pf
+  # enable ipfilter
   service { 'ipfilter':
-    ensure  => running,
-    enable  => true,
-    name    => $ipfilter::service_name,
+    ensure     => running,
+    enable     => true,
+    name       => $ipfilter::service_name,
+    hasrestart => true,
+    restart    => "/usr/sbin/svcadm refresh ${::ipfilter::service_name}",
   }
 }

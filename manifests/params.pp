@@ -16,4 +16,5 @@ class ipfilter::params {
 
     # general settings
     $loopback_interface = 'lo0'
+    $service_name = 'network/ipfilter:default'
 }
